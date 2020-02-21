@@ -4,7 +4,7 @@
 */
 axios.get('https://api.github.com/users/waveownage')
   .then(response => {
-    console.log(response)
+    cards.appendChild(githubComponent(response));
   })
   .catch(err => {})
 
@@ -57,31 +57,49 @@ const githubComponent = (object) => {
 
   const cardImg = document.createElement('img');
   cardImg.src = object.data.avatar_url;
-  console.log(cardImg.src);
   
-
   const cardInfo = document.createElement('div');
   cardInfo.classList.add('card-info');
 
   const name = document.createElement('h3');
   name.classList.add('name');
+  name.textContent = object.data.name;
 
   const username = document.createElement('p');
   username.classList.add('username');
+  username.textContent = object.data.login;
   
   const location = document.createElement('p');
+  location.textContent = object.data.location;
 
   const profile = document.createElement('p');
+  profile.textContent = object.data.html_url;
 
   const followers = document.createElement('p');
+  followers.textContect = object.data.followers;
 
   const following = document.createElement('p');
+  following.textContent = object.data.following;
+
 
   const bio = document.createElement('p');
+  bio.textContent = object.data.bio;
 
+  cardDiv.appendChild(cardImg);
+  cardDiv.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
 
+  return cardDiv;
 
 }
+
+const cards = document.querySelector('.cards');
 
 /* List of LS Instructors Github username's: 
   tetondan

@@ -2,6 +2,11 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+axios.get('https://api.github.com/users/waveownage')
+  .then(response => {
+    console.log(response)
+  })
+  .catch(err => {})
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -45,6 +50,38 @@ const followersArray = [];
 </div>
 
 */
+
+const githubComponent = (object) => {
+  const cardDiv = document.createElement('div');
+  cardDiv.classList.add('card');
+
+  const cardImg = document.createElement('img');
+  cardImg.src = object.data.avatar_url;
+  console.log(cardImg.src);
+  
+
+  const cardInfo = document.createElement('div');
+  cardInfo.classList.add('card-info');
+
+  const name = document.createElement('h3');
+  name.classList.add('name');
+
+  const username = document.createElement('p');
+  username.classList.add('username');
+  
+  const location = document.createElement('p');
+
+  const profile = document.createElement('p');
+
+  const followers = document.createElement('p');
+
+  const following = document.createElement('p');
+
+  const bio = document.createElement('p');
+
+
+
+}
 
 /* List of LS Instructors Github username's: 
   tetondan

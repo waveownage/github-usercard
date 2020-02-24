@@ -2,11 +2,16 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+
+
 axios.get('https://api.github.com/users/waveownage')
   .then(response => {
     cards.appendChild(githubComponent(response));
   })
-  .catch(err => {})
+  .catch(err => {
+    console.log(`error`)
+  })
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -29,7 +34,18 @@ axios.get('https://api.github.com/users/waveownage')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+followersArray.forEach(curr =>
+  axios.get(`https://api.github.com/users/${curr}`)
+  .then(response => {
+    cards.appendChild(githubComponent(response))
+  })
+  .catch(err => {
+    console.log('ERROR');
+  }));
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -83,7 +99,7 @@ const githubComponent = (object) => {
 
 
   const bio = document.createElement('p');
-  bio.textContent = object.data.bio;
+  bio.textContent = `Bio: ${object.data.bio}`;
 
   cardDiv.appendChild(cardImg);
   cardDiv.appendChild(cardInfo);
